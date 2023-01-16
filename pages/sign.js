@@ -3,23 +3,29 @@ import {FcGoogle} from 'react-icons/fc'
 // import {account} from '../appwrite/appwiriteConfig.js'
 import { account } from './appwrite/appwriteConfig'
 import {  ID } from 'appwrite';
+import { v4 as uuidv4 } from 'uuid';
 const sign = () => {
   const [user,setuser] = useState({email:"",username:"",password:"",cpassword:""});
 
   const onHandleChange = (e)=>{
     e.preventDefault();
     setuser({...user,[e.target.name]:[e.target.value]});
+    console.log(user);
 
 
   }
   const onHandleSubmit = async (e)=>{
     e.preventDefault();
-     const promise  =  await account.create(
-      ID.unique(),
-      user.email,
-      user.username,
-      user.password,
-      user.cpassword
+      let myemail = user.email.toString();
+      let mypassword = user.password.toString();
+      let myusername = user.username.toString();
+     // console.log(myemail)
+     const promise  =  account.create(
+      uuidv4(),
+      myemail,
+      mypassword,
+      myusername,
+      
     );
 
     promise.then(
@@ -40,11 +46,11 @@ const sign = () => {
       <div className='py-2k'>
 
       <label className='text-lg block py-2'>Email</label>
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" placeholder="Email" onChange={onHandleChange} value={user.email} ></input>
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" placeholder="Email" onChange={onHandleChange} value={user.email} required ></input>
       
 
         <label className='text-lg block py-2'>Username</label>
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="text" placeholder="Username" onChange={onHandleChange} value={user.username}></input>
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="text" placeholder="Username" onChange={onHandleChange} value={user.username} required></input>
       
    
      
