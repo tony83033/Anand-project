@@ -1,10 +1,16 @@
-import {React,useState} from 'react'
+import {React,use,useState} from 'react'
 import {FcGoogle} from 'react-icons/fc'
 // import {account} from '../appwrite/appwiriteConfig.js'
 import { account } from './appwrite/appwriteConfig'
-import {  ID } from 'appwrite';
+//import {  ID } from 'appwrite';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router'
+
 import { v4 as uuidv4 } from 'uuid';
+import Router from 'next/dist/server/router';
 const sign = () => {
+  const myrouter = useRouter();
   const [user,setuser] = useState({email:"",username:"",password:"",cpassword:""});
 
   const onHandleChange = (e)=>{
@@ -19,29 +25,83 @@ const sign = () => {
       let myemail = user.email.toString();
       let mypassword = user.password.toString();
       let myusername = user.username.toString();
+      let mycpass    = user.cpassword.toString();
      // console.log(myemail)
-     const promise  =  account.create(
-      uuidv4(),
-      myemail,
-      mypassword,
-      myusername,
-      
-    );
 
-    promise.then(
-      function(response){
-        console.log(response);
-      },
+    if(mypassword === mycpass){
+      const promise  =  account.create(
+        uuidv4(),
+        myemail,
+        mypassword,
+        myusername,
+        
+      );
+  
+      promise.then(
+        function(response){
+          console.log(response);
+          toast.success('Sign Up Successful', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+            
+            setTimeout(()=>{
+              myrouter.push("/");
+            },2000)
+        },
+  
+        function(error){
+          console.log(error)
+          toast.error(error.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+        }
+      )
 
-      function(error){
-        console.log(error)
-      }
-    )
+    }else{
+      toast.error('Password and confirm password not match ', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
+     
 
     
   }
   return (
     <>
+
+<ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+/>
   <div className=' flex flex-row justify-center items-center bg-gray-800 text-white h-full  py-4'>
       <div className='py-2k'>
 
