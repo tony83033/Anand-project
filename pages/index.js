@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-
+//import Image from 'next/image'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -37,11 +37,21 @@ export default function Home() {
       </div>
     </div>
     <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-      <img
+
+    <Image
+     className="object-cover object-center rounded h-full w-full"
+     // loader={myLoader}
+      src="/image.png"
+      alt="Picture of the author"
+      width={700}
+    // layout="fill"
+      height={500}
+    />
+      {/* <img
         className="object-cover object-center rounded h-full w-full"
         alt="hero"
         src="https://courses.techvansh.in/wp-content/uploads/2020/10/LIGHTandroidhacking-banner-scaled-min-1-870x440.jpg"
-      />
+      /> */}
     </div>
   </div>
 </section>

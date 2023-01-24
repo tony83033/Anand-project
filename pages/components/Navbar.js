@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
-
+import { account } from '../appwrite/appwriteConfig'
 const Navbar = () => {
+  // const getData = account.get();
+  
+
+  // useEffect(()=>{
+  //   getData.then(
+  //     function(response){
+  //       console.log(response);
+  //     },
+  //     function(error){
+  //       console.log(error);
+  //       console.log("No session found")
+  //     }
+  //   )
+  // },[])
   return (
     <>
       <header className="text-gray-400 bg-gray-900 body-font sticky top-0 z-50">

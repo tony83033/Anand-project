@@ -40,6 +40,7 @@ const sign = () => {
       promise.then(
         function(response){
           console.log(response);
+           account.createEmailSession(myemail, mypassword);
           toast.success('Sign Up Successful', {
             position: "top-center",
             autoClose: 5000,
