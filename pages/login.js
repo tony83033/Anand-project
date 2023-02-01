@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import {FcGoogle} from 'react-icons/fc'
 import { account } from './appwrite/appwriteConfig'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 const login = () => {
+  useEffect(()=>{
+    const promise = account.get();
+
+promise.then(function (response) {
+    console.log(response);
+    myrouter.push("/");
+}, function (error) {
+    console.log(error);
+});
+  })
   const myrouter = useRouter();
   const [user,setuser] = useState({email:"",password:""});
 

@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { account } from '../appwrite/appwriteConfig'
-const Navbar = () => {
-  // const getData = account.get();
-  
 
-  // useEffect(()=>{
-  //   getData.then(
-  //     function(response){
-  //       console.log(response);
-  //     },
-  //     function(error){
-  //       console.log(error);
-  //       console.log("No session found")
-  //     }
-  //   )
-  // },[])
+const Navbar = () => {
+  let islogin = null;
+  useEffect(()=>{
+    const promise = account.get();
+
+promise.then(function (response) {
+    console.log(response);
+    islogin = response;
+  //  myrouter.push("/");
+}, function (error) {
+    console.log(error);
+});
+  })
   return (
     <>
       <header className="text-gray-400 bg-gray-900 body-font sticky top-0 z-50">
@@ -41,8 +40,16 @@ const Navbar = () => {
       <a className="mr-5 hover:text-white cursor-pointer">Blog</a>
       <a className="mr-5 hover:text-white cursor-pointer">About</a>
     </nav>
-    <Link href={'/login'} className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
-      Login
+
+  
+
+
+    
+{
+ islogin &&
+
+ <Link href={'/sign'} className="inline-flex items-center bg-red-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mx-3">
+      Logout
       <svg
         fill="none"
         stroke="currentColor"
@@ -55,6 +62,23 @@ const Navbar = () => {
         <path d="M5 12h14M12 5l7 7-7 7" />
       </svg>
     </Link>
+
+}
+
+<Link href={'/login'} className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+  Login
+  <svg
+    fill="none"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth={2}
+    className="w-4 h-4 ml-1"
+    viewBox="0 0 24 24"
+  >
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+</Link>
 
     <Link href={'/sign'} className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mx-3">
       SignUp

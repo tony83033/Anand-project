@@ -1,4 +1,4 @@
-import {React,use,useState} from 'react'
+import {React,use,useEffect,useState} from 'react'
 import {FcGoogle} from 'react-icons/fc'
 // import {account} from '../appwrite/appwiriteConfig.js'
 import { account } from './appwrite/appwriteConfig'
@@ -10,6 +10,18 @@ import { useRouter } from 'next/router'
 import { v4 as uuidv4 } from 'uuid';
 import Router from 'next/dist/server/router';
 const sign = () => {
+
+  useEffect(()=>{
+    const promise = account.get();
+
+promise.then(function (response) {
+    console.log(response);
+    myrouter.push("/");
+}, function (error) {
+    console.log(error);
+});
+  })
+
   const myrouter = useRouter();
   const [user,setuser] = useState({email:"",username:"",password:"",cpassword:""});
 
