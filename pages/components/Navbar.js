@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { account } from '../appwrite/appwriteConfig'
 
-const Navbar = ({key,user}) => {
+
+const Navbar = ({key,user,logout}) => {
   
- 
+
   return (
     <>
       <header key={key} className="text-gray-400 bg-gray-900 body-font sticky top-0 z-50">
@@ -38,7 +38,7 @@ const Navbar = ({key,user}) => {
 
 <div>
 
-  {user.value &&  <Link href={'/logout'} className="inline-flex items-center bg-red-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mx-3">
+  {user.value &&  <Link onClick={logout} href={'/'} className="inline-flex items-center bg-red-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mx-3">
    Logout
    <svg
      fill="none"
@@ -88,18 +88,6 @@ const Navbar = ({key,user}) => {
   </svg>
 </Link>
     }
-
-  
-    
-    
-
- 
-
-
-
-
-   
-
 
     
   </div>
