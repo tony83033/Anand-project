@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 //import Image from 'next/image'
+import Link from 'next/link'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -28,9 +29,9 @@ export default function Home() {
       verything About Android Hacking Is World Most Advance Course At Affordable Price. The Course Is Online You Cannot Download The Course In This Course You Will Learn Everything About Android Hacking As The Name Suggest, For Your Doubts/Problems We Have Created Private Whatsapp Group For Course Users, We Have to Make Course Less Theoretical More Practical So You Don’t Have To Worry Also You Can Request Any Topic That Our Course Don’t Have
       </p>
       <div className="flex justify-center">
-        <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+        <Link  href= {`/allcourse/Full Mobile Hacking Course`} className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
         PREVIEW THIS COURSE
-        </button>
+        </Link>
         {/* <button className="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
           Button
         </button> */}
