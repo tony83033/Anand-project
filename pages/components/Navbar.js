@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 
+import { AiFillDashboard} from "react-icons/ai";
 const Navbar = ({key,user,logout}) => {
   
 
@@ -38,7 +39,13 @@ const Navbar = ({key,user,logout}) => {
 
 <div>
 
-  {user.value &&  <Link onClick={logout} href={'/'} className="inline-flex items-center bg-red-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mx-3">
+  {user.value && 
+  <>
+  
+
+  <Link href={"/dashboard"} type="button" class="  inline-flex items-center  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-lg px-5 py-2   dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"> <div className='flex justify-center items-center '><AiFillDashboard/> <p> Dashboard </p></div></Link>
+  
+  <Link onClick={logout} href={'/'} className="inline-flex items-center bg-red-800 border-0 py-1 px-3 text-lg hover:bg-red-900 rounded mt-4 md:mt-0 mx-3">
    Logout
    <svg
      fill="none"
@@ -51,7 +58,11 @@ const Navbar = ({key,user,logout}) => {
    >
      <path d="M5 12h14M12 5l7 7-7 7" />
    </svg>
- </Link> }
+ </Link>
+  
+
+ </>
+ }
  
    {!user.value &&
    <Link href={'/sign'} className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mx-3">

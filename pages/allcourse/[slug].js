@@ -6,7 +6,7 @@ import {Query} from 'appwrite';
 
 const course = ({mycourse}) => {
     
-  console.log("this is my course",mycourse);
+
 
   if (!mycourse || !mycourse.documents) {
     return <p>Loading...</p>;
